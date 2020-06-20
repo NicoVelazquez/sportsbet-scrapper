@@ -1,12 +1,7 @@
-# horse_scrapper
+# Horse Scrapper
 
-Start:
-
+###### Initialize:
 pip install -r requirements.txt
 
-
-
-
-Bundle:
-
+###### Bundle:
 pyinstaller --onefile main.py
