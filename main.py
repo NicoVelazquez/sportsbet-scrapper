@@ -121,6 +121,9 @@ def horse_info(horse_element, index):
 
     open_c = open_container[index].find_element_by_tag_name('span').text
 
+    if open_c == '':
+        open_c = 999.99
+
     data['Horse'].append(horse)
     data['Tab Number'].append(tab_number)
     data['Barrier'].append(barrier)
@@ -167,17 +170,17 @@ if __name__ == "__main__":
     url = "https://www.sportsbet.com.au/racing-schedule/" + input_url
 
     if not input_url:
-        input_url = '/' + datetime.today().strftime('%Y-%m-%d')
+        input_url = datetime.today().strftime('%Y-%m-%d')
 
     path = os.getcwd()
-    # writer = pd.ExcelWriter(path + '/' + input_url[1:] + '.xlsx', index=False)  # Separate in sheets
+    # writer = pd.ExcelWriter(path + '/' + input_url + '.xlsx', index=False)  # Separate in sheets
 
     start = time.time()
     australian_meetings(url)
     end = time.time()
     print(end - start)
 
-    final_df.to_excel(path + '/' + input_url[1:] + '.xlsx', index=False)
+    final_df.to_excel(path + '/' + input_url + '.xlsx', index=False)
     # writer.save()
     driver.quit()
     print('Finished scrapping.')
